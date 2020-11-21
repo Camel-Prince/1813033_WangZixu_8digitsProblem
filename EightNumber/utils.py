@@ -128,8 +128,10 @@ plt为画笔，即：import matplotlib.pyplot as plt
 """
 
 
-def plot_matrix(matrix, block, plt):
+def plot_matrix(matrix, block, plt, zero_color="#93C760", another_color="#7AC7F8", title=" ", step=" "):
     plt.subplots(figsize=(4, 4))
+    plt.title(title)
+    plt.xlabel("Step "+step)
     rows = len(matrix)
     columns = len(matrix[0])
     plt.xlim(0, 3*rows)
@@ -138,9 +140,9 @@ def plot_matrix(matrix, block, plt):
         for j in range(columns):
             if matrix[i][j] != 0:
                 # 画出一个3*3的矩形，其中左下角坐标为：(3 * j, 6 - 3 * i)，并填充颜色， 0和其他的要有区分；
-                plt.gca().add_patch(plt.Rectangle((3 * j, 6 - 3 * i), 3, 3, color='#7AC7F8', alpha=1))
+                plt.gca().add_patch(plt.Rectangle((3 * j, 6 - 3 * i), 3, 3, color=another_color, alpha=1))
             else:
-                plt.gca().add_patch(plt.Rectangle((3 * j, 6 - 3 * i), 3, 3, color='#93C760', alpha=1))
+                plt.gca().add_patch(plt.Rectangle((3 * j, 6 - 3 * i), 3, 3, color=zero_color, alpha=1))
             plt.text(3 * j + 1.5, 7.5 - 3 * i, str(matrix[i][j]), fontsize=30, horizontalalignment='center')
     plt.xticks([])
     plt.yticks([])
