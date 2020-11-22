@@ -145,5 +145,5 @@ def plot_matrix(matrix, block, plt, zero_color="#93C760", another_color="#7AC7F8
     plt.xticks([])
     plt.yticks([])
     plt.show(block=block)
-    plt.pause(0.1)
+    plt.pause(0.5)
     plt.close()
