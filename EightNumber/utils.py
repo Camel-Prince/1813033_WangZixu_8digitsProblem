@@ -17,10 +17,9 @@ def get_father(son_matrix):
 
 def fill_path_stack(dest_matrix):
     father = get_father(dest_matrix)
-    if is_same(father, [[0, 0, 0], [0, 0, 0], [0, 0, 0]]):
-        return
-    path_stack.append(father)
-    fill_path_stack(father)
+    while not is_same(father, [[0, 0, 0], [0, 0, 0], [0, 0, 0]]):
+        path_stack.append(father)
+        father = get_father(father)
 
 
 def show(matrix):
@@ -31,10 +30,10 @@ def show(matrix):
                 print(end="\n")
 
 
-def get_position(matrix):
+def get_position(matrix, ele=0):
     for i in range(3):
         for j in range(3):
-            if matrix[i][j] == 0:
+            if matrix[i][j] == ele:
                 return [i, j]
 
 
@@ -119,12 +118,11 @@ def is_same(mtx_A, mtx_B):
     return True
 
 
-
 """
 plot_matrix: 用来画出矩阵；
 matrix为二维列表； 
 block表示是否会被阻塞（True为阻塞，画图的线程阻塞们必须等待该线程释放资源后才能继续）
-plt为画笔，即：import matplotlib.pyplot as plt
+plt为画笔，应该为：import matplotlib.pyplot as plt
 """
 
 
@@ -147,5 +145,5 @@ def plot_matrix(matrix, block, plt, zero_color="#93C760", another_color="#7AC7F8
     plt.xticks([])
     plt.yticks([])
     plt.show(block=block)
-    plt.pause(1)
+    plt.pause(0.1)
     plt.close()
